@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Card from "./component/Card";
 import Charts from "./component/Charts";
 
 function App() {

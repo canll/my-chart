@@ -1,15 +1,22 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import Card from "./Card";
+import { useState } from "react";
+
 const Charts = () => {
+  const [show, setShow] = useState(false);
+  const [more, setMore] = useState(false);
+  console.log(more);
+
   return (
     <div
       style={{
         padding: "15px",
-        height: 500,
-        width: 540,
+        height: show ? 600 : 520,
+        width: show ? "100%" : 540,
         borderRadius: "20px",
         boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+        transition: "height 0.3s ease, width 0.3s ease",
       }}
     >
       <header>
@@ -32,23 +39,29 @@ const Charts = () => {
               gap: 6,
             }}
           >
-            <Icon
+            {/* <Icon
               icon="bx:grid-vertical"
               style={{ color: "lightgray", fontSize: "28px" }}
-            />
+            /> */}
             <Icon
-              icon={"hugeicons:arrow-expand"}
-              style={{ color: "lightgray", fontSize: "24px" }}
+              onClick={() => setShow(!show)}
+              onMouseEnter={() => setMore(true)}
+              onMouseLeave={() => setMore(false)}
+              icon={show ? "hugeicons:arrow-shrink" : "hugeicons:arrow-expand"}
+              style={{
+                color: more ? "black" : "lightgray",
+                fontSize: "24px",
+                transition: "color 0.3s ease",
+              }}
             />
-
-            <Icon
+            {/* <Icon
               icon="charm:menu-kebab"
               style={{ color: "lightgray", fontSize: "24px" }}
-            />
+            /> */}
           </div>
         </nav>
       </header>
-      <Card />
+      <Card show={show} />
     </div>
   );
 };
