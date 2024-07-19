@@ -1,5 +1,6 @@
 import "./App.css";
 import Charts from "./component/Charts";
+import Balon from "./component/Balon";
 
 function App() {
   return (
@@ -8,7 +9,8 @@ function App() {
         margin: "3rem",
       }}
     >
-      <Charts />
+      {/* <Charts /> */}
+      <Balon />
     </div>
   );
 }
