@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-const Balon = () => {
-  const [data, setData] = useState([
-    { id: "Active", value: 13 },
-    { id: "Passive", value: 3 },
-    { id: "Missing", value: 8 },
-  ]);
+const BubbleCharts = () => {
+  const svgRef = useRef();
+
+  const data = [
+    { id: "Active", value: 50 },
+    { id: "Passive", value: 30 },
+    { id: "Missing", value: 20 },
+  ];
 
   useEffect(() => {
     const width = 200;
@@ -24,7 +26,7 @@ const Balon = () => {
     const root = d3.hierarchy({ children: data }).sum((d) => d.value);
 
     const svg = d3
-      .select("#chart")
+      .select(svgRef.current)
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`)
@@ -80,7 +82,11 @@ const Balon = () => {
       .attr("fill", "#fff");
   }, [data]);
 
-  return <svg id="chart"></svg>;
+  return (
+    <div style={{ height: 400, backgroundColor: "lightgreen" }}>
+      <svg ref={svgRef}></svg>
+    </div>
+  );
 };
 
-export default Balon;
+export default BubbleCharts;
